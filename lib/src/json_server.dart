@@ -2,6 +2,15 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+const keyData = 'data';
+const keyHost = 'host';
+const keyPort = 'port';
+const res404 = '''
+{
+  "message": "not found"
+}
+''';
+
 class JsonServer {
   Map<String, dynamic> config = Map();
   Map<String, dynamic> database;
@@ -18,23 +27,23 @@ class JsonServer {
 
   Future init() async {
     // load database from config path
-    if (!this.config.containsKey('data')) {
+    if (!this.config.containsKey(keyData)) {
       return Future.error('Missing key `data` in config');
     }
 
-    var dbPath = this.config['data'];
+    var dbPath = this.config[keyData];
     this.database = jsonDecode(File(dbPath).readAsStringSync());
 
     // init server
-    if (!this.config.containsKey('ip')) {
-      this.config['ip'] = '127.0.0.1';
+    if (!this.config.containsKey(keyHost)) {
+      this.config[keyHost] = '127.0.0.1';
     }
 
-    if (!this.config.containsKey('port')) {
-      this.config['port'] = '8080';
+    if (!this.config.containsKey(keyPort)) {
+      this.config[keyPort] = '8080';
     }
 
-    this.server = await HttpServer.bind(InternetAddress.loopbackIPv4, int.parse(this.config['port']));
+    this.server = await HttpServer.bind(InternetAddress.loopbackIPv4, int.parse(this.config[keyPort]));
 
     // set init
     this.initialized = true;
@@ -51,7 +60,7 @@ class JsonServer {
 
   _requestHandler(req) async {
     req.response
-      ..headers.contentType = ContentType("application", "json", charset: "utf-8");
+      ..headers.contentType = ContentType('application', 'json', charset: 'utf-8');
 
     var apiPath = req.requestedUri.path;
 

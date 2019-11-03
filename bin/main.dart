@@ -4,20 +4,53 @@ import 'package:json_server/src/json_server.dart';
 import 'package:args/args.dart';
 
 main(List<String> arguments) async {
+  exitCode = 0;
 
-  ArgResults argResults;
+  ArgResults results = parseArgs(arguments);
+
+  Map<String, String> config = Map();
+  config['data'] = results['data'];
+
+  try {
+    JsonServer server = JsonServer(config: config);
+    await server.init();
+    await server.start();
+  } catch (e) {
+    stderr.write('Error: ${e}\n');
+    exit(1);
+  }
+}
+
+ArgResults parseArgs(List<String> args) {
   final parser = ArgParser()
-    ..addOption('data', abbr: 'd');
-  argResults = parser.parse(arguments);
+                  ..addOption('data', abbr: 'd')
+                  ..addOption('host', abbr: 'h', defaultsTo: '127.0.0.1')
+                  ..addOption('port', abbr: 'p', defaultsTo: '1711');
 
+  ArgResults argResults = parser.parse(args);
+  // validate required arguments
   if (argResults['data'] == null) {
-    stderr.write('Error: option --data is required');
+    stderr.write('Error: option --data is missing.\n');
+    printHelp();
     exit(1);
   }
 
-  Map<String, String> config = new Map();
-  config['data'] = argResults['data'];
-  JsonServer server = JsonServer(config: config);
-  await server.init();
-  await server.start();
+  return argResults;
+}
+
+printHelp() {
+  var help = '''
+Launch a JSON API server from a source.
+ 
+Usage: jserver --data <json_file>
+-h, --help            Print this usage information.
+-d, --data            Path to JSON file. Required.
+-h, --host            Server address. Default: 127.0.0.1
+-p, --port            Specify port to use. Default: 1711
+
+Example:
+  \$ jserver --data ~/server/api.json
+  \$ jserver -d ~/api.json -h 127.0.0.1 -p 9999
+''';
+  stdout.write(help);
 }
