@@ -1,3 +1,1 @@
-void server() {
-  print('Start server');
-}
+export 'src/json_server.dart';

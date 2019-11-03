@@ -1,15 +1,23 @@
-import 'package:json_server/json_server.dart' as json_server;
 import 'dart:io';
 
-main() async {
-  var server = await HttpServer.bind(InternetAddress.loopbackIPv4, 8080);
-  print("Serving at ${server.address}:${server.port}");
+import 'package:json_server/src/json_server.dart';
+import 'package:args/args.dart';
 
-  await for (var request in server) {
+main(List<String> arguments) async {
 
-    request.response
-      ..headers.contentType = ContentType("text", "plain", charset: "utf-8")
-      ..write(request.uri.path);
-    await request.response.close();
+  ArgResults argResults;
+  final parser = ArgParser()
+    ..addOption('data', abbr: 'd');
+  argResults = parser.parse(arguments);
+
+  if (argResults['data'] == null) {
+    stderr.write('Error: option --data is required');
+    exit(1);
   }
+
+  Map<String, String> config = new Map();
+  config['data'] = argResults['data'];
+  JsonServer server = JsonServer(config: config);
+  await server.init();
+  await server.start();
 }

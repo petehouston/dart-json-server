@@ -2,7 +2,13 @@
 
 Handy JSON server for web and mobile apps development.
 
+## Usage
+
+```
+jserver --data=PATH_TO_JSON_DB
+```
+
 
 # LICENSE
 
-MIT by [Pete Houston](https://petehouston.com) @ 2019
+MIT @ 2019 by [Pete Houston](https://petehouston.com). 
