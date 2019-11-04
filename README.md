@@ -45,4 +45,4 @@ $ jserver -h localhost -p 8888 -d api.json
 
 # LICENSE
 
-MIT @ 2019 by [Pete Houston](https://petehouston.com). 
+[MIT](LICENSE.md) @ 2019 [Pete Houston](https://petehouston.com).
