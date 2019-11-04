@@ -66,7 +66,8 @@ class JsonServer {
 
     await for (var request in this.server) {
       request.response
-        ..headers.contentType = ContentType('application', 'json', charset: 'utf-8');
+        ..headers.contentType =
+            ContentType('application', 'json', charset: 'utf-8');
       this._requestHandler(request);
     }
   }

@@ -1,19 +1,18 @@
 import 'dart:io';
 
 class Log {
-
   static i(String msg) {
-     info(msg);
+    info(msg);
   }
 
   static w(String msg) {
-     warn(msg);
+    warn(msg);
   }
 
   static e(String msg) {
-     error(msg);
+    error(msg);
   }
-  
+
   static info(String msg) {
     stdout.write('[INFO] ${msg}\n');
   }

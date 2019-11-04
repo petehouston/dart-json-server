@@ -27,9 +27,9 @@ main(List<String> arguments) async {
 
 ArgResults parseArgs(List<String> args) {
   final parser = ArgParser()
-                  ..addOption('data', abbr: 'd')
-                  ..addOption('host', abbr: 'h', defaultsTo: '127.0.0.1')
-                  ..addOption('port', abbr: 'p', defaultsTo: '1711');
+    ..addOption('data', abbr: 'd')
+    ..addOption('host', abbr: 'h', defaultsTo: '127.0.0.1')
+    ..addOption('port', abbr: 'p', defaultsTo: '1711');
   parser.addFlag('help', negatable: false);
 
   ArgResults argResults;
