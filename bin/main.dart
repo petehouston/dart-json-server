@@ -10,6 +10,8 @@ main(List<String> arguments) async {
 
   Map<String, String> config = Map();
   config['data'] = results['data'];
+  config['host'] = results['host'];
+  config['port'] = results['port'];
 
   validateInput(config);
 
