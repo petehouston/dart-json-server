@@ -40,7 +40,7 @@ ArgResults parseArgs(List<String> args) {
   }
 
   // check if 'help'
-  if (argResults['help'] != null) {
+  if (argResults['help']) {
     printHelp();
     exit(0);
   }
