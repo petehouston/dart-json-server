@@ -2,7 +2,17 @@
 
 Launch JSON server for web and mobile apps development from CLI without complicated backend setup.
 
+## Installation
+
+You can install the package from the command line:
+
+```sh
+$ pub global activate json_server
+```
+
 ## Usage
+
+The CLI is named `jserver`.
 
 ```
 jserver --data=<path to JSON file>
