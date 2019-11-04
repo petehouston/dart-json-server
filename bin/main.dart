@@ -29,8 +29,22 @@ ArgResults parseArgs(List<String> args) {
                   ..addOption('data', abbr: 'd')
                   ..addOption('host', abbr: 'h', defaultsTo: '127.0.0.1')
                   ..addOption('port', abbr: 'p', defaultsTo: '1711');
+  parser.addFlag('help', negatable: false);
 
-  ArgResults argResults = parser.parse(args);
+  ArgResults argResults;
+  try {
+    argResults = parser.parse(args);
+  } catch (e) {
+    stdout.write('Error: invalid input arguments.');
+    exit(1);
+  }
+
+  // check if 'help'
+  if (argResults['help'] != null) {
+    printHelp();
+    exit(0);
+  }
+
   // validate required arguments
   if (argResults['data'] == null) {
     stderr.write('Error: option --data is missing.\n');
