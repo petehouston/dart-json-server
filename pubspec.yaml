@@ -1,6 +1,8 @@
 name: json_server
-description: Launch JSON server for web and mobile apps development from CLI without complicated backend setup.
-version: 1.0.0
+description: >-
+  Launch JSON server for web and mobile apps development from CLI without complicated backend setup for Dart
+  and Flutter development.
+version: 1.0.0+2
 author: Pete Houston <contact@petehouston.com>
 homepage: https://github.com/petehouston/dart-json-server
 repository: https://github.com/petehouston/dart-json-server
