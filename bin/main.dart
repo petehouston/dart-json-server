@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:json_server/src/json_server.dart';
+import 'dart:io';
 import 'package:args/args.dart';
 
 main(List<String> arguments) async {
