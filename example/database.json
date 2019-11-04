@@ -1,0 +1,11 @@
+{
+  "/author": {
+    "name":  "Pete Houston",
+    "website": "https://petehouston.com"
+  },
+
+  "/projects": [
+    { "name": "flutter_emoji", "home": "https://pub.dev/packages/flutter_emoji" },
+    { "name": "json_server", "home": "https://pub.dev/packages/json_server"}
+  ]
+}
