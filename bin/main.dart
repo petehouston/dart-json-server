@@ -11,6 +11,8 @@ main(List<String> arguments) async {
   Map<String, String> config = Map();
   config['data'] = results['data'];
 
+  validateInput(config);
+
   try {
     JsonServer server = JsonServer(config: config);
     await server.init();
@@ -36,6 +38,14 @@ ArgResults parseArgs(List<String> args) {
   }
 
   return argResults;
+}
+
+validateInput(Map<String, String> input) {
+  File path = File(input['data']);
+  if (!path.existsSync()) {
+    stderr.write('Error: file does not exist, ${input['data']}\n');
+    exit(1);
+  }
 }
 
 printHelp() {
