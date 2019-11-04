@@ -1,4 +1,5 @@
 import 'package:json_server/src/json_server.dart';
+import 'package:json_server/src/utils.dart';
 import 'dart:io';
 import 'package:args/args.dart';
 
@@ -19,7 +20,7 @@ main(List<String> arguments) async {
     await server.init();
     await server.start();
   } catch (e) {
-    stderr.write('Error: ${e}\n');
+    Log.e('${e}\n');
     exit(1);
   }
 }
@@ -35,7 +36,7 @@ ArgResults parseArgs(List<String> args) {
   try {
     argResults = parser.parse(args);
   } catch (e) {
-    stdout.write('Error: invalid input arguments.');
+    Log.e('invalid input arguments.');
     exit(1);
   }
 
@@ -47,7 +48,7 @@ ArgResults parseArgs(List<String> args) {
 
   // validate required arguments
   if (argResults['data'] == null) {
-    stderr.write('Error: option --data is missing.\n');
+    Log.e('option --data is missing.\n');
     printHelp();
     exit(1);
   }
@@ -58,7 +59,7 @@ ArgResults parseArgs(List<String> args) {
 validateInput(Map<String, String> input) {
   File path = File(input['data']);
   if (!path.existsSync()) {
-    stderr.write('Error: file does not exist, ${input['data']}\n');
+    Log.e('file does not exist, ${input['data']}\n');
     exit(1);
   }
 }

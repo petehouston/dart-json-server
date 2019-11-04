@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'utils.dart';
 
 const keyData = 'data';
 const keyHost = 'host';
@@ -61,7 +62,7 @@ class JsonServer {
       v6Only: false,
     );
 
-    stdout.write('Server is started at http://${config[keyHost]}:${config[keyPort]}');
+    Log.i('Server is started at http://${config[keyHost]}:${config[keyPort]}');
 
     await for (var request in this.server) {
       request.response
@@ -83,7 +84,7 @@ class JsonServer {
 
       await req.response.close();
     } catch (e) {
-      stderr.write('Error: ${e}\n');
+      Log.e('${e}');
     }
   }
 }
