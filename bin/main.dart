@@ -69,7 +69,7 @@ printHelp() {
 Launch a JSON API server from a source.
  
 Usage: jserver --data <json_file>
--h, --help            Print this usage information.
+  , --help            Print this usage information.
 -d, --data            Path to JSON file. Required.
 -h, --host            Server address. Default: 127.0.0.1
 -p, --port            Specify port to use. Default: 1711
