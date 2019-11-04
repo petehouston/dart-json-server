@@ -1,6 +1,6 @@
 name: json_server
 description: Handy JSON server for web and mobile apps development.
-# version: 1.0.0
+version: 0.0.1+1
 homepage: https://github.com/petehouston/dart-json-server
 author: Pete Houston <contact@petehouston.com>
 
